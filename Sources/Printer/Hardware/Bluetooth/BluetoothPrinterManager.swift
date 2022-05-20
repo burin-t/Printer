@@ -70,6 +70,8 @@ public enum NearbyPrinterChange {
 public protocol PrinterManagerDelegate: NSObjectProtocol {
 
     func nearbyPrinterDidChange(_ change: NearbyPrinterChange)
+    func onConnectionTimedOut()
+
 }
 
 public extension BluetoothPrinterManager {
@@ -253,6 +255,8 @@ public class BluetoothPrinterManager {
         var p = printer
         p.state = .disconnecting
         nearbyPrinterDidChange(.update(p))
+        
+        delegate?.onConnectionTimedOut()
 
         centralManager.cancelPeripheralConnection(per)
     }
