@@ -111,4 +111,8 @@ extension BluetoothPrinterSelectTableViewController: PrinterManagerDelegate {
 
         tableView.endUpdates()
     }
+    
+    public func onConnectionTimedOut() {
+        // Not implement
+    }
 }
