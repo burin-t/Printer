@@ -21,7 +21,7 @@ extension Data {
     }
     
     static func print(_ feed: UInt8) -> Data {
-        return Data(esc_pos: .feed(points: feed))
+        return Data(esc_pos: .feed(points: 0))
     }
 }
 
