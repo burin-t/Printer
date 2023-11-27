@@ -67,7 +67,7 @@ public enum NearbyPrinterChange {
     case remove(UUID) // identifier
 }
 
-public protocol PrinterManagerDelegate: NSObjectProtocol {
+public protocol BluetoothPrinterManagerDelegate: NSObjectProtocol {
 
     func nearbyPrinterDidChange(_ change: NearbyPrinterChange)
     func onConnectionTimedOut()
@@ -89,7 +89,7 @@ public class BluetoothPrinterManager {
     private let centralManagerDelegate = BluetoothCentralManagerDelegate(BluetoothPrinterManager.specifiedServices)
     private let peripheralDelegate = BluetoothPeripheralDelegate(BluetoothPrinterManager.specifiedServices, characteristics: BluetoothPrinterManager.specifiedCharacteristics)
 
-    public weak var delegate: PrinterManagerDelegate?
+    public weak var delegate: BluetoothPrinterManagerDelegate?
 
     public var errorReport: ((PError) -> ())?
 
@@ -99,7 +99,7 @@ public class BluetoothPrinterManager {
         return centralManagerDelegate.discoveredPeripherals.values.map { BluetoothPrinter($0) }
     }
 
-    public init(delegate: PrinterManagerDelegate? = nil) {
+    public init(delegate: BluetoothPrinterManagerDelegate? = nil) {
 
         centralManager = CBCentralManager(delegate: centralManagerDelegate, queue: queue)
 
