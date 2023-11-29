@@ -82,7 +82,7 @@ public class BluetoothPrinterSelectTableViewController: UITableViewController {
 
 }
 
-extension BluetoothPrinterSelectTableViewController: PrinterManagerDelegate {
+extension BluetoothPrinterSelectTableViewController: BluetoothPrinterManagerDelegate {
 
     public func nearbyPrinterDidChange(_ change: NearbyPrinterChange) {
 
